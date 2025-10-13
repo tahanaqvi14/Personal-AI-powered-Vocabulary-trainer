@@ -28,7 +28,7 @@ function App() {
 
     try {
       // ✅ Send data to backend
-      const response = await fetch("http://localhost:3000/addword", {
+      const response = await fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/addword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -5,7 +5,7 @@ function Viewwords() {
     const [words, setWords] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/viewwords")
+        fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/viewwords")
             .then((res) => res.json())
             .then((data) => setWords(data))
             .catch((err) => console.error(err));

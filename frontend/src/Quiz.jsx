@@ -9,7 +9,7 @@ function Quiz() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3000/quiz")
+    fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz")
       .then(res => res.json())
       .then(data => setWord(data.word))
       .catch(err => console.error(err));
@@ -26,7 +26,7 @@ function Quiz() {
         sentence: sentence.trim()
       
       });
-      const res = await fetch(`http://localhost:3000/quiz/answer?${params.toString()}`);
+      const res = await fetch(`https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz/answer?${params.toString()}`);
       const data = await res.json();
       setFeedback(data);
     } catch (err) {
@@ -42,7 +42,7 @@ function Quiz() {
     setSentence("");
     setFeedback(null);
 
-    fetch("http://localhost:3000/quiz")
+    fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz")
       .then(res => res.json())
       .then(data => setWord(data.word))
       .catch(err => console.error(err));

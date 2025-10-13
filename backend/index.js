@@ -33,7 +33,7 @@ app.use(flash());
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://personal-ai-powered-vocabulary-trainer-3.onrender.com',
   credentials: true
 }));
 app.use(express.json());
