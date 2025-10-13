@@ -1,26 +1,27 @@
-.main{
+
+.main {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  align-items: center;
-  /* justify-content: center; */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
 }
+
 
 .card {
     width: 300px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
     background-color: white;
     font-family: sans-serif;
     margin-bottom: 10px;
-    transition: transform 0.2s ease;
   }  
   .card-content {
     color: black;
     padding: 16px;
   }
+  
   
   .card-title {
     margin: 0 0 8px;

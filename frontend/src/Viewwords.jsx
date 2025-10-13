@@ -17,7 +17,8 @@ function Viewwords() {
                 <div className="card" key={index}>
                     <div className="card-content">
                         <h2 className="card-title">{word.wordname}</h2>
-                        <p className="card-description">{word.meaning}</p>
+                        <p className="card-description" style={{ fontWeight: "800" }}>{word.meaning}</p>
+
                         <p className="card-description">{word.sentence}</p>
                     </div>
                 </div>
