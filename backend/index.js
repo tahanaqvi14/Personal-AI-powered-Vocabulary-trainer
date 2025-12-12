@@ -31,9 +31,30 @@ app.use(session({
 }));
 app.use(flash());
 
-// Middleware
+// Middleware - CORS configuration
+// Allow both local development and production origins
+const allowedOrigins = [
+  'http://localhost:5173', // Local development
+  'https://personal-ai-powered-vocabulary-trainer-3.onrender.com',
+  'https://personal-ai-powered-vocabulary-trainer-4.onrender.com'
+];
+
 app.use(cors({
-  origin: 'https://personal-ai-powered-vocabulary-trainer-3.onrender.com',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      // For development, allow localhost with any port
+      if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  },
   credentials: true
 }));
 app.use(express.json());

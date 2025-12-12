@@ -9,7 +9,8 @@ function Quiz() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz")
+    // Use localhost for local development, production URL for production
+    fetch("http://localhost:3000/quiz")
       .then(res => res.json())
       .then(data => setWord(data.word))
       .catch(err => console.error(err));
@@ -26,7 +27,8 @@ function Quiz() {
         sentence: sentence.trim()
       
       });
-      const res = await fetch(`https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz/answer?${params.toString()}`);
+      // const res = await fetch(`https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz/answer?${params.toString()}`);
+      const res = await fetch(`http://localhost:3000/quiz/answer?${params.toString()}`);
       const data = await res.json();
       setFeedback(data);
     } catch (err) {
@@ -42,7 +44,8 @@ function Quiz() {
     setSentence("");
     setFeedback(null);
 
-    fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz")
+    // fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz")
+    fetch("http://localhost:3000/quiz")
       .then(res => res.json())
       .then(data => setWord(data.word))
       .catch(err => console.error(err));
@@ -78,8 +81,36 @@ function Quiz() {
             <p style={{ color: "red" }}>{feedback.error}</p>
           ) : (
             <>
-              <p>Meaning Correct: {feedback.meaningCorrect}</p>
-              <p>Sentence Correct: {feedback.sentenceCorrect}</p>
+              <div style={{ 
+                padding: "16px", 
+                borderRadius: "12px", 
+                marginBottom: "16px",
+                background: feedback.meaningCorrect === "Yes" ? "#d1fae5" : "#fee2e2",
+                border: `2px solid ${feedback.meaningCorrect === "Yes" ? "#10b981" : "#ef4444"}`
+              }}>
+                <p style={{ 
+                  margin: 0, 
+                  fontWeight: 600,
+                  color: feedback.meaningCorrect === "Yes" ? "#065f46" : "#991b1b"
+                }}>
+                  Meaning: {feedback.meaningCorrect === "Yes" ? "✓ Correct" : "✗ Incorrect"}
+                </p>
+              </div>
+              <div style={{ 
+                padding: "16px", 
+                borderRadius: "12px", 
+                marginBottom: "16px",
+                background: feedback.sentenceCorrect === "Yes" ? "#d1fae5" : "#fee2e2",
+                border: `2px solid ${feedback.sentenceCorrect === "Yes" ? "#10b981" : "#ef4444"}`
+              }}>
+                <p style={{ 
+                  margin: 0, 
+                  fontWeight: 600,
+                  color: feedback.sentenceCorrect === "Yes" ? "#065f46" : "#991b1b"
+                }}>
+                  Sentence: {feedback.sentenceCorrect === "Yes" ? "✓ Correct" : "✗ Incorrect"}
+                </p>
+              </div>
               <button onClick={handleNext}>Next Word</button>
             </>
           )}
