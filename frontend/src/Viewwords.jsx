@@ -8,7 +8,7 @@ function Viewwords() {
     useEffect(() => {
         setLoading(true);
         // fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/viewwords")
-        fetch("http://localhost:3000/viewwords")
+        fetch("https://ai-vocab-builder-backend.onrender.com/viewwords")
             .then((res) => res.json())
             .then((data) => {
                 setWords(data);

@@ -3,8 +3,8 @@ import express from 'express';
 const router = express.Router();
 
 // Hardcoded credentials
-const ADMIN_USER_ID = 'admin';
-const ADMIN_PASSWORD = 'admin';
+const ADMIN_USER_ID = 'thecityschool';
+const ADMIN_PASSWORD = 'thecityschool';
 
 // Login endpoint
 router.post('/', async (req, res) => {

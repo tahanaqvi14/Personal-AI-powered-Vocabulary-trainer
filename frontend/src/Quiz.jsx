@@ -12,7 +12,7 @@ function Quiz() {
   useEffect(() => {
     // Use localhost for local development, production URL for production
     setLoadingWord(true);
-    fetch("http://localhost:3000/quiz")
+    fetch("https://ai-vocab-builder-backend.onrender.com/quiz")
       .then(res => res.json())
       .then(data => {
         setWord(data.word);
@@ -36,7 +36,7 @@ function Quiz() {
 
       });
       // const res = await fetch(`https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz/answer?${params.toString()}`);
-      const res = await fetch(`http://localhost:3000/quiz/answer?${params.toString()}`);
+      const res = await fetch(`https://ai-vocab-builder-backend.onrender.com/quiz/answer?${params.toString()}`);
       const data = await res.json();
       setFeedback(data);
     } catch (err) {
@@ -54,7 +54,7 @@ function Quiz() {
     setLoadingWord(true);
 
     // fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/quiz")
-    fetch("http://localhost:3000/quiz")
+    fetch("https://ai-vocab-builder-backend.onrender.com/quiz")
       .then(res => res.json())
       .then(data => {
         setWord(data.word);

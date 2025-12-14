@@ -34,7 +34,7 @@ function Dashboard() {
     console.log("Sentence:", sentence);
 
     try {
-      const response = await fetch("http://localhost:3000/addword", {
+      const response = await fetch("https://ai-vocab-builder-backend.onrender.com/addword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
