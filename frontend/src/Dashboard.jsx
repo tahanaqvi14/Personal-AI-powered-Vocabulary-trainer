@@ -1,69 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Viewwords from './Viewwords'
 import { useNavigate } from "react-router-dom";
-import Login from './Login';
 
-
-
-function App() {
+function Dashboard() {
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userType, setUserType] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Check authentication status from localStorage
-    const authStatus = localStorage.getItem("isAuthenticated");
-    const storedUserType = localStorage.getItem("userType");
-    
-    if (authStatus === "true" && storedUserType) {
-      setIsAuthenticated(true);
-      setUserType(storedUserType);
-    }
-    setIsLoading(false);
-  }, []);
-
-  const handleLogin = (type) => {
-    setIsAuthenticated(true);
-    setUserType(type);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("userType");
-    setIsAuthenticated(false);
-    setUserType(null);
-  };
-
-  // Show loading state
-  if (isLoading) {
-    return (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        color: 'white',
-        fontSize: '18px'
-      }}>
-        Loading...
-      </div>
-    );
-  }
-
-  // Show login page if not authenticated
-  if (!isAuthenticated) {
-    return <Login onLogin={handleLogin} />;
-  }
+  
+  // Get user type from localStorage
+  const userType = localStorage.getItem("userType");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [word, setWord] = useState("");
   const [meaning, setMeaning] = useState("");
   const [sentence, setSentence] = useState("");
-  const [page,setpage]=useState('Main')
+  const [page, setPage] = useState('Main');
   const [isAdding, setIsAdding] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -84,8 +34,6 @@ function App() {
     console.log("Sentence:", sentence);
 
     try {
-      // ✅ Send data to backend
-      // const response = await fetch("https://personal-ai-powered-vocabulary-trainer-4.onrender.com/addword", {
       const response = await fetch("http://localhost:3000/addword", {
         method: "POST",
         headers: {
@@ -119,6 +67,11 @@ function App() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("userType");
+    navigate("/login");
+  };
 
   return (
     <div className="App">
@@ -235,10 +188,11 @@ function App() {
       )}
 
       <main>
-        {page==='Viewwords' && <Viewwords/>}
+        {page === 'Viewwords' && <Viewwords />}
       </main>
     </div>
   );
 }
 
-export default App;
+export default Dashboard;
+

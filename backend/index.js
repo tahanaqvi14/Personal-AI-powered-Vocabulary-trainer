@@ -11,6 +11,7 @@ import { dirname } from 'path';
 import addwordRouter from './routes/addwordRouter.js';
 import viewwordsRouter from './routes/viewwordsRouter.js';
 import quizRouter from './routes/quizRouter.js';
+import authRouter from './routes/authRouter.js';
 
 // Import DB connection
 import db from './config/mongoose_connection.js';
@@ -62,6 +63,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
 
 // Routes
+app.use('/login', authRouter);
 app.use('/addword', addwordRouter);
 app.use('/viewwords', viewwordsRouter);
 app.use('/quiz', quizRouter);
