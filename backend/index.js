@@ -36,8 +36,8 @@ app.use(flash());
 // Allow both local development and production origins
 const allowedOrigins = [
   'http://localhost:5173', // Local development
-  'https://personal-ai-powered-vocabulary-trainer-3.onrender.com',
-  'https://personal-ai-powered-vocabulary-trainer-4.onrender.com'
+  // 'https://personal-ai-powered-vocabulary-trainer-3.onrender.com',
+  'https://ai-vocab-builder-frontend.onrender.com'
 ];
 
 app.use(cors({
